@@ -8,11 +8,9 @@
 
 | Skill | 描述 | 状态 |
 |-------|------|------|
-| [pinchtab](./pinchtab/) | 浏览器自动化控制 | ✅ 就绪 |
-| [smart-search](./smart-search/) | 智能搜索（自动选择工具） | ✅ 就绪 |
-| [skill-creator](./skill-creator/) | 创建新 Skills 的工具 | ✅ 就绪 |
-| [agent-reach](./agent-reach/) | 全网搜索工具集成 | ✅ 就绪 |
-| [resend](./resend/) | Resend 邮件平台集成 | ✅ 就绪 |
+| [pinchtab](./pinchtab/) | 浏览器自动化控制 | ✅ |
+| [smart-search](./smart-search/) | 智能搜索（自动选择工具） | ✅ |
+| [skill-creator](./skill-creator/) | Skill 创建工具 | ✅ |
 
 ---
 
@@ -34,17 +32,6 @@ git clone https://github.com/foxleoly/openclaw-skills.git ~/.agents/skills-repo
 ln -s ~/.agents/skills-repo/pinchtab ~/.agents/skills/pinchtab
 ln -s ~/.agents/skills-repo/smart-search ~/.agents/skills/smart-search
 ln -s ~/.agents/skills-repo/skill-creator ~/.agents/skills/skill-creator
-ln -s ~/.agents/skills-repo/agent-reach ~/.agents/skills/agent-reach
-ln -s ~/.agents/skills-repo/resend ~/.agents/skills/resend
-```
-
-### 方式 3：手动下载
-
-```bash
-# 下载单个 Skill
-mkdir -p ~/.agents/skills/pinchtab
-curl -fsSL https://raw.githubusercontent.com/foxleoly/openclaw-skills/main/pinchtab/SKILL.md \
-  -o ~/.agents/skills/pinchtab/SKILL.md
 ```
 
 ---
@@ -74,12 +61,6 @@ curl -fsSL https://raw.githubusercontent.com/foxleoly/openclaw-skills/main/pinch
 
 ---
 
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
----
-
 ## 📄 License
 
 MIT License
@@ -87,4 +68,3 @@ MIT License
 ---
 
 *Last Updated: 2026-03-13*
-
