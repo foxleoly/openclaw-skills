@@ -8,6 +8,7 @@
 
 | Skill | 描述 | 状态 |
 |-------|------|------|
+| [ai-cofounder](./ai-cofounder/) | AI 技术联合创始人（Vibe Coding） | ✅ NEW |
 | [pinchtab](./pinchtab/) | 浏览器自动化控制 | ✅ |
 | [smart-search](./smart-search/) | 智能搜索（自动选择工具） | ✅ |
 | [skill-creator](./skill-creator/) | Skill 创建工具 | ✅ |
@@ -29,6 +30,7 @@ curl -fsSL https://raw.githubusercontent.com/foxleoly/openclaw-skills/main/insta
 git clone https://github.com/foxleoly/openclaw-skills.git ~/.agents/skills-repo
 
 # 创建软链接
+ln -s ~/.agents/skills-repo/ai-cofounder ~/.agents/skills/ai-cofounder
 ln -s ~/.agents/skills-repo/pinchtab ~/.agents/skills/pinchtab
 ln -s ~/.agents/skills-repo/smart-search ~/.agents/skills/smart-search
 ln -s ~/.agents/skills-repo/skill-creator ~/.agents/skills/skill-creator
