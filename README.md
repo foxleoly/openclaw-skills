@@ -53,11 +53,29 @@ ln -s ~/.agents/skills-repo/skill-creator ~/.agents/skills/skill-creator
 
 ---
 
-## 📚 参考资料
+## 📚 正在使用的外部 Skills
+
+这些 Skills 由其他开发者创建，我们也在项目中集成使用：
+
+| Skill | 作者 | 描述 | 链接 |
+|-------|------|------|------|
+| **agent-reach** | OpenClaw Community | 全网搜索工具集成（Twitter/X, Reddit, YouTube 等） | [GitHub](https://github.com/openclaw/openclaw/tree/main/skills/agent-reach) |
+| **resend** | OpenClaw Community | Resend 邮件平台集成（发送/接收/模板） | [GitHub](https://github.com/openclaw/openclaw/tree/main/skills/resend) |
+| **weather** | OpenClaw Community | 天气查询（wttr.in / Open-Meteo） | [GitHub](https://github.com/openclaw/openclaw/tree/main/skills/weather) |
+| **github** | OpenClaw Community | GitHub 操作（issues/PRs/CI） | [GitHub](https://github.com/openclaw/openclaw/tree/main/skills/github) |
+| **apple-notes** | OpenClaw Community | Apple Notes 管理（memo CLI） | [GitHub](https://github.com/openclaw/openclaw/tree/main/skills/apple-notes) |
+| **apple-reminders** | OpenClaw Community | Apple Reminders 管理（remindctl） | [GitHub](https://github.com/openclaw/openclaw/tree/main/skills/apple-reminders) |
+
+> 💡 **说明：** 这些外部 Skills 通过 OpenClaw 官方渠道安装，不在本仓库中分发。
+
+---
+
+## 🔗 参考资料
 
 - [Agent Skills Specification](https://agentskills.io)
 - [Claude Skills 官方文档](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)
 - [OpenClaw 文档](https://docs.openclaw.ai/skills)
+- [OpenClaw 官方 Skills](https://github.com/openclaw/openclaw/tree/main/skills)
 
 ---
 
