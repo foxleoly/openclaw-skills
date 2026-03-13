@@ -1,0 +1,115 @@
+# GitHub Actions - 自动测试 Skills
+# 位置：.github/workflows/test-skills.yml
+
+name: Test Skills
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Skill Structure
+        run: |
+          echo "🔍 验证 Skills 结构..."
+          for dir in */; do
+            if [ -f "$dir/SKILL.md" ]; then
+              echo "✅ $dir - SKILL.md 存在"
+              
+              # 检查 YAML frontmatter
+              if head -1 "$dir/SKILL.md" | grep -q "^---"; then
+                echo "   ✅ YAML frontmatter 格式正确"
+              else
+                echo "   ❌ YAML frontmatter 格式错误"
+                exit 1
+              fi
+              
+              # 检查必需字段
+              if grep -q "^name:" "$dir/SKILL.md"; then
+                echo "   ✅ name 字段存在"
+              else
+                echo "   ❌ 缺少 name 字段"
+                exit 1
+              fi
+              
+              if grep -q "^description:" "$dir/SKILL.md"; then
+                echo "   ✅ description 字段存在"
+              else
+                echo "   ❌ 缺少 description 字段"
+                exit 1
+              fi
+            fi
+          done
+
+      - name: Check Scripts
+        run: |
+          echo "📜 检查脚本..."
+          for dir in */scripts/; do
+            if [ -d "$dir" ]; then
+              for script in "$dir"*.sh; do
+                if [ -f "$script" ]; then
+                  if head -1 "$script" | grep -q "^#!/bin/bash"; then
+                    echo "✅ $script - shebang 正确"
+                  else
+                    echo "⚠️  $script - 缺少 shebang"
+                  fi
+                fi
+              done
+            fi
+          done
+
+  build:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Release ZIPs
+        run: |
+          echo "📦 创建 Release ZIPs..."
+          mkdir -p dist
+          for dir in */; do
+            if [ -f "$dir/SKILL.md" ]; then
+              SKILL_NAME=$(basename "$dir")
+              echo "  打包：$SKILL_NAME"
+              zip -rq "dist/$SKILL_NAME.zip" "$SKILL_NAME"
+            fi
+          done
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: skills
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: skills
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*.zip
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
