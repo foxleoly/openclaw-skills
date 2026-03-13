@@ -48,11 +48,10 @@ echo ""
 echo "📁 安装位置：$SKILLS_DIR/skills/"
 echo ""
 echo "📦 已安装的 Skills:"
-ls -1 "$SKILLS_DIR/skills/" | sed "s/^/   - /"
+ls -1 "$SKILLS_DIR/skills/" | sed 's/^/   - /'
 echo ""
 echo "💡 使用方法:"
 echo "   重启 OpenClaw 或重新加载 skills"
 echo ""
 echo "🔗 GitHub 仓库:"
 echo "   $REPO_URL"
-
